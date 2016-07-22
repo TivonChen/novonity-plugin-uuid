@@ -1,0 +1,28 @@
+{
+  "name": "novonity-plugin-uuid",
+  "version": "1.0.0",
+  "description": "getuuid plugin description",
+  "cordova": {
+    "id": "novonity-plugin-uuid",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TivonChen/novonity-plugin-uuid.git"
+  },
+  "keywords": [
+    "getuuid",
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "TivonChen",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/TivonChen/novonity-plugin-uuid/issues"
+  },
+  "homepage": "https://github.com/TivonChen/novonity-plugin-uuid#readme"
+}
