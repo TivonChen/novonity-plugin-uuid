@@ -21,20 +21,15 @@ import android.preference.PreferenceManager;
 public class GetUuid extends CordovaPlugin {
 
 	public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-		if(action.equals("getuuid")) {
+		if(action.equals("get")) {
 			SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(cordova.getActivity());
 			String uuid = sp.getString("uuid", "");
 			if(uuid != null && !uuid.equals("")){
 				try {
-					JSONObject json = new JSONObject();
-					json.put("uuid",uuid);
-					callbackContext.success(json);
-
+					callbackContext.success(uuid);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
-
-
 			}else{
 				TelephonyManager tm = (TelephonyManager) cordova.getActivity().getSystemService(Context.TELEPHONY_SERVICE);
                 final String tmDevice, tmSerial, androidId;
@@ -53,9 +48,7 @@ public class GetUuid extends CordovaPlugin {
 				editor.putString("uuid",uniqueId);
 				editor.commit();
 				try {
-					JSONObject json = new JSONObject();
-					json.put("uuid",uniqueId);
-					callbackContext.success(json);
+					callbackContext.success(uniqueId);
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}

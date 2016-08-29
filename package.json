@@ -1,6 +1,6 @@
 {
   "name": "novonity-plugin-uuid",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "getuuid plugin description",
   "cordova": {
     "id": "novonity-plugin-uuid",
@@ -14,7 +14,7 @@
     "url": "git+https://github.com/TivonChen/novonity-plugin-uuid.git"
   },
   "keywords": [
-    "getuuid",
+    "uuid",
     "ecosystem:cordova",
     "cordova-android",
     "cordova-ios"

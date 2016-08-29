@@ -11,6 +11,6 @@
 
 @interface GetDevice : CDVPlugin
 
-- (void)getuuid: (CDVInvokedUrlCommand*)command;
+- (void)get: (CDVInvokedUrlCommand*)command;
 
 @end

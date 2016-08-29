@@ -9,6 +9,14 @@ Cordova plugin for get uuid
 
 call the function below directly
 
-`getUuid.getuuid(function(info) {
-  var uuid = info.uuid;
+`getUuid.get(function(uuid) {
+  var myUuid = uuid;
 })`
+
+or in typescript
+
+`Uuid.get().then(data => {
+	var myUuid = data;
+})`
+
+See [Ionic-native development](https://github.com/driftyco/ionic-native/blob/master/DEVELOPER.md) for more information.

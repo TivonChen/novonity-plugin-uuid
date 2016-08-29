@@ -8,34 +8,38 @@
 #import "KeyChainStore.h"
 #import <Foundation/NSUUID.h>
 
-#define KEY_USERNAME @"com.novonity.mayi"
-
 @implementation GetDevice
 
-- (void) getuuid: (CDVInvokedUrlCommand*)command {
-    NSString *uuid = [self getUUIDString];
-    
-    NSLog(@"GetDevice getuuid is: %@", uuid);
+- (void) get: (CDVInvokedUrlCommand*)command {
+    [self.commandDelegate runInBackground:^{
 
-    NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithCapacity:1];
-    [dic setObject:uuid forKey:@"uuid"];
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        NSString *uuidUserDefaults = [defaults objectForKey:@"uuid"];
 
-    CDVPluginResult *result = [CDVPluginResult resultWithStatus: CDVCommandStatus_OK messageAsDictionary: dic];
-    [self.commandDelegate sendPluginResult: result callbackId: command.callbackId];
-}
+        NSString *uuid = (NSString *)[KeyChainStore load:@"uuid"];
 
-- (NSString *)getUUIDString {
-    NSString * strUUID = (NSString *)[KeyChainStore load:KEY_USERNAME];
+        if ( uuid && !uuidUserDefaults) {
+            [defaults setObject:uuid forKey:@"uuid"];
+            [defaults synchronize];
 
-    //首次执行该方法时，uuid为空
-    if ([strUUID isEqualToString:@""] || !strUUID) {
-        strUUID = [self randomUUID];
+        }  else if ( !uuid && !uuidUserDefaults ) {
+            NSString *uuidString = [self randomUUID];
 
-        //将该uuid保存到keychain
-        [KeyChainStore save:KEY_USERNAME data:strUUID];
+            [KeyChainStore save:@"uuid" data:uuidString];
 
-    }
-    return strUUID;
+            [defaults setObject:uuidString forKey:@"uuid"];
+            [defaults synchronize];
+
+            uuid = (NSString *)[KeyChainStore load:@"uuid"];
+
+        } else if ( ![uuid isEqualToString:uuidUserDefaults] ) {
+            [KeyChainStore save:@"uuid" data:uuidUserDefaults];
+            uuid = (NSString *)[KeyChainStore load:@"uuid"];
+        }
+
+        CDVPluginResult *result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsString:uuid];
+        [self.commandDelegate sendPluginResult:result callbackId:command.callbackId];
+    }];
 }
 
 - (NSString *)randomUUID {
