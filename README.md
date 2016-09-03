@@ -3,21 +3,29 @@ Cordova plugin for get uuid
 
 # Installation
 
-`$ ionic plugin add novonity-plugin-uuid`
+```bash
+$ ionic plugin add novonity-plugin-uuid
+```
 
 # How to use
 
 Call the function below directly when using ionic1
 
-`var myUuid = getUuid.uuid;`
+```javascript
+var myUuid = getUuid.uuid;
+```
 
 or in typescript when using ionic2
 
-`import {Uuid} from 'ionic-native';
- let myUuid = Uuid.getUuid.uuid;`
+```typescript
+import {Uuid} from 'ionic-native';
+let myUuid = Uuid.getUuid.uuid;
+```
 
  And the definition of Uuid as below:
- `@Plugin({
+ 
+ ```typescript
+ @Plugin({
   plugin: 'novonity-plugin-uuid',
   pluginRef: 'getUuid',
   repo: 'https://github.com/TivonChen/novonity-plugin-uuid.git',
@@ -26,7 +34,8 @@ or in typescript when using ionic2
 export class Uuid {
   @CordovaProperty
   static get getUuid() { return window['getUuid']; }
-}`
+}
+```
 
 See [Ionic-native development](https://github.com/driftyco/ionic-native/blob/master/DEVELOPER.md) for more information.
 
