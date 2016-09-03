@@ -24,8 +24,8 @@ let myUuid = Uuid.getUuid.uuid;
 
  And the definition of Uuid as below:
  
- ```typescript
- @Plugin({
+```typescript
+@Plugin({
   plugin: 'novonity-plugin-uuid',
   pluginRef: 'getUuid',
   repo: 'https://github.com/TivonChen/novonity-plugin-uuid.git',
