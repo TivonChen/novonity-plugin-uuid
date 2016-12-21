@@ -1,6 +1,6 @@
 {
   "name": "novonity-plugin-uuid",
-  "version": "2.1.1",
+  "version": "2.1.2",
   "description": "getuuid plugin description",
   "cordova": {
     "id": "novonity-plugin-uuid",

@@ -22,7 +22,7 @@
             [defaults setObject:uuid forKey:@"uuid"];
             [defaults synchronize];
 
-        }  else if ( !uuid && !uuidUserDefaults ) {
+        }  else if ( (!uuid && !uuidUserDefaults) || (uuid.length == 0 && uuidUserDefaults.length == 0) ) {
             NSString *uuidString = [self randomUUID];
 
             [KeyChainStore save:@"uuid" data:uuidString];
